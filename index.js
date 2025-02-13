@@ -8,26 +8,29 @@ let products = [
 	{ id: 1, name: "soap", price: 2000 }
 ]
 
-app.get("/products", (req, res) => {
+const getProducts = (req, res) => {
 	res.json(products)
-})
+}
 
+app.get("/products", getProducts)
 
-app.get("/products/:id", (req, res) => {
+const getOneProduct = (req, res) => {
 	const product = products.find(p => p.id === +req.params.id)
 	res.json(product)
-})
+}
 
+app.get("/products/:id", getOneProduct)
 
-app.post("/products", (req, res) => {
+const createProduct = (req, res) => {
 	const product = req.body
 
 	products.push({ id: products.length, ...product })
 	res.json({ message: "data updated", })
 
-})
+}
+app.post("/products", createProduct)
 
-app.put("/products/:id", (req, res) => {
+const updateProduct = (req, res) => {
 	const dataupdate = req.body
 
 	products = products.map(p => {
@@ -40,11 +43,15 @@ app.put("/products/:id", (req, res) => {
 
 	res.json({ message: "data updated" })
 
-})
+}
 
-app.delete("/products/:id", (req, res) => {
+app.put("/products/:id", updateProduct)
+
+const deleteproduct = (req, res) => {
 	products = products.filter(p => p.id !== +req.params.id)
 	res.json({ message: "deleted succesfully" })
-})
+}
+
+app.delete("/products/:id", deleteproduct)
 
 app.listen(3000, () => console.log('server started on port 3000'))
