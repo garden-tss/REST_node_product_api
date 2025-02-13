@@ -11,4 +11,10 @@ app.get("/products", (req, res) => {
 })
 
 
+app.get("/products/:id", (req, res) => {
+	const product = products.find(p => p.id === +req.params.id)
+	res.json(product)
+})
+
+
 app.listen(3000, () => console.log('server started on port 3000'))
