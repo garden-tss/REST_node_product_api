@@ -42,4 +42,9 @@ app.put("/products/:id", (req, res) => {
 
 })
 
+app.delete("/products/:id", (req, res) => {
+	products = products.filter(p => p.id !== +req.params.id)
+	res.json({ message: "deleted succesfully" })
+})
+
 app.listen(3000, () => console.log('server started on port 3000'))
