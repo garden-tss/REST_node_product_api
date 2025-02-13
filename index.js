@@ -27,4 +27,19 @@ app.post("/products", (req, res) => {
 
 })
 
+app.put("/products/:id", (req, res) => {
+	const dataupdate = req.body
+
+	products = products.map(p => {
+		if (p.id === +req.params.id) {
+			return { ...p, ...dataupdate }
+		}
+
+		return p
+	})
+
+	res.json({ message: "data updated" })
+
+})
+
 app.listen(3000, () => console.log('server started on port 3000'))
