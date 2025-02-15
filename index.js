@@ -15,7 +15,6 @@ app.get("/products", getProducts)
 
 app.get("/products/:id", getOneProduct)
 
-
 app.post("/products", createProduct)
 
 app.put("/products/:id", updateProduct)
